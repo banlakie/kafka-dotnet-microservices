@@ -117,6 +117,9 @@ To simulate an order, send a `POST` request to **OrderService**:
   - OrderService publishes `order_created`.
   - PaymentService processes the order and publishes `payment_completed`.
   - ShippingService receives `payment_completed` and ships the order.
+ 
+      ![image_alt](payment_completed.png)
+
 
 ### 2. Simulating a Failed Payment
 
@@ -134,6 +137,8 @@ To trigger a failed payment, send an order with an **Amount > 300** (I added thi
 - **Expected Behavior:**
   - PaymentService detects failure and publishes `payment_failed`.
   - NotificationService receives `payment_failed` and logs an alert.
+ 
+    ![image_alt](payment_failure.png)
 
 ## Verifying Kafka Messages
 
@@ -145,7 +150,7 @@ To see messages flowing through Kafka:
 docker exec -it kafka-dotnet-microservices-kafka-1 kafka-console-consumer --bootstrap-server kafka:9092 --topic order_created --from-beginning
 ```
 
-Or you can log the services one-by-one. Here is the example commnad:
+Or you can log the services one-by-one. Here is the example commnad, (change the service name for paymentservice, shippingservice or notificationservice):
 ```sh
 docker logs -f kafka-dotnet-microservices-orderservice-1
 ```
