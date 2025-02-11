@@ -109,8 +109,8 @@ To simulate an order, send a `POST` request to **OrderService**:
 - **Body:**
   ```json
   {
-      "OrderId": "123",
-      "Amount": 50
+      "OrderId": "test-123",
+      "Amount": 250
   }
   ```
 - **Expected Behavior:**
@@ -138,7 +138,7 @@ To trigger a failed payment, send an order with an **Amount > 300** (I added thi
   - PaymentService detects failure and publishes `payment_failed`.
   - NotificationService receives `payment_failed` and logs an alert.
  
-    ![image_alt](payment_failure.png)
+    ![image_alt](payment_failed.png)
 
 ## Verifying Kafka Messages
 
